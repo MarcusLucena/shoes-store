@@ -1,10 +1,13 @@
-import { ApolloClient, InMemoryCache } from '@apollo/client'
+import { ApolloClient, InMemoryCache } from '@apollo/client/core'
+
 
 const cache = new InMemoryCache()
 
 const apolloClient = new ApolloClient({
-  uri: import.meta.env.VITE_GRAPHQL_ENDPOINT as string,
   cache,
+  uri: import.meta.env.VITE_GRAPHQL_ENDPOINT,
 })
 
-export default apolloClient
+export {
+  apolloClient,
+}

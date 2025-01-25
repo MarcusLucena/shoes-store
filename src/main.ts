@@ -1,7 +1,7 @@
-import { createApp, provide } from 'vue'
+import { createApp, provide, h } from 'vue'
 import { createPinia } from 'pinia'
 import { DefaultApolloClient } from '@vue/apollo-composable'
-import apolloClient from './infra/apollo-client'
+import { apolloClient } from './infra/apollo-client'
 import './assets/styles/globals.scss'
 
 import App from './App.vue'
@@ -11,7 +11,7 @@ const app = createApp({
   setup() {
     provide(DefaultApolloClient, apolloClient)
   },
-  App,
+  render: () => h(App),
 })
 
 app.use(createPinia())
