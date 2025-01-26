@@ -8,37 +8,27 @@ const logo: string =
 
 <template>
   <header class="header-container">
-    <el-row class="container">
-      <el-col :xs="24" :sm="8" :md="12">
-        <RouterLink to="/">
-          <el-image :src="logo" style="width: 100px; height: 50px"></el-image>
-        </RouterLink>
-      </el-col>
-      <el-col :xs="16" :md="12">
-        <el-row justify="end">
-          <el-col :md="4">
-            <WishListHeader />
-          </el-col>
-          <el-col :md="4">
-            <div class="user-container">
-              <el-dropdown placement="bottom-end">
-                <span class="el-dropdown-link">
-                  <UserIcon width="32" height="32" fill="#FFFFFF" />
-                </span>
-                <template #dropdown>
-                  <el-dropdown-menu>
-                    <el-dropdown-item>Entrar</el-dropdown-item>
-                    <el-dropdown-item>Minha Conta</el-dropdown-item>
-                    <el-dropdown-item>Endereços</el-dropdown-item>
-                    <el-dropdown-item>Minha Netshoes</el-dropdown-item>
-                  </el-dropdown-menu>
-                </template>
-              </el-dropdown>
-            </div>
-          </el-col>
-        </el-row>
-      </el-col>
-    </el-row>
+    <div class="logo-container">
+      <RouterLink to="/">
+        <el-image :src="logo" style="width: 100px; height: 50px"></el-image>
+      </RouterLink>
+    </div>
+    <div class="right-container">
+      <WishListHeader />
+      <el-dropdown placement="bottom-end">
+        <span class="el-dropdown-link">
+          <UserIcon width="32" height="32" fill="#FFFFFF" />
+        </span>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item>Entrar</el-dropdown-item>
+            <el-dropdown-item>Minha Conta</el-dropdown-item>
+            <el-dropdown-item>Endereços</el-dropdown-item>
+            <el-dropdown-item>Minha Netshoes</el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
+    </div>
   </header>
 </template>
 
@@ -46,21 +36,42 @@ const logo: string =
 .header-container {
   width: 100%;
   min-height: 60px;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
   background-color: $default-color;
   color: white;
 
-  .user-container {
+  .logo-container {
     display: flex;
-    justify-content: end;
-    justify-items: center;
-    height: 60px;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .el-dropdown-link {
-      cursor: pointer;
-      color: var(--el-color-primary);
-      display: flex;
-      align-items: center;
-    }
+  .right-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 10px;
+  }
+}
+@media (min-width: 568px) {
+  .header-container {
+    justify-content: space-between;
+    padding: 0 1rem;
+  }
+}
+
+@media (min-width: 1080px) {
+  .header-container {
+    padding: 0 2rem;
+  }
+}
+
+@media (min-width: 1200px) {
+  .header-container {
+    padding: 0 calc(calc(100% - 1200px) / 2);
   }
 }
 </style>
