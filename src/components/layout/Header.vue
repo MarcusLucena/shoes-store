@@ -10,7 +10,9 @@ const logo: string =
   <header class="header-container">
     <el-row class="container">
       <el-col :xs="24" :sm="8" :md="12">
-        <el-image :src="logo" style="width: 100px; height: 50px"></el-image>
+        <RouterLink to="/">
+          <el-image :src="logo" style="width: 100px; height: 50px"></el-image>
+        </RouterLink>
       </el-col>
       <el-col :xs="16" :md="12">
         <el-row justify="end">

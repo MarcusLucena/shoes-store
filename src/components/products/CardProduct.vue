@@ -2,31 +2,24 @@
 import { defineProps, ref } from 'vue'
 import type { Product } from '@/domain/models/Product'
 import MaterialSymbolsFavoriteOutline from '@/components/icons/MaterialSymbolsFavoriteOutline.vue'
-import { useWishlist } from '@/composables/useWishlist'
+import { useWishlistStore } from '@/stores/useWishlistStore.ts'
 
 const props = defineProps({
   product: [Object as () => Product, { required: true }],
 })
+const store = useWishlistStore()
 
 const localProduct = ref({ ...props.product })
-const { wishlist, addToWishlist, removeFromWishlist } = useWishlist()
-
-const isInWishlist = ref(wishlist.value.some((item) => item.code === localProduct.value.code))
-
-const toggleWishlist = () => {
-  if (isInWishlist.value) {
-    removeFromWishlist(localProduct.value.code)
-  } else {
-    addToWishlist(localProduct.value)
-  }
-  isInWishlist.value = !isInWishlist.value
-}
 </script>
 
 <template>
   <el-card style="max-width: 225px">
     <div class="button-add-cart">
-      <el-button :type="isInWishlist ? 'danger' : 'info'" circle @click="toggleWishlist">
+      <el-button
+        :type="store.getItems.some((item) => item.code === product.code) ? 'danger' : 'info'"
+        circle
+        @click="store.toggleItem(product)"
+      >
         <MaterialSymbolsFavoriteOutline width="30" height="30" fill="#FFFFFF" />
       </el-button>
     </div>
