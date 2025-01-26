@@ -1,4 +1,5 @@
 @use "tokens" as t;
+@use "fonts" as f;
 
 * {
   margin: 0;
@@ -35,6 +36,8 @@ footer, header, hgroup, menu, nav, section {
 
 body {
   line-height: 1;
+  font-family: 'MyCustomFont', sans-serif;
+  font-size: 16px;
 }
 
 ol, ul {
@@ -54,4 +57,9 @@ q::before, q::after {
 table {
   border-collapse: collapse;
   border-spacing: 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
 }
