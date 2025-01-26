@@ -3,11 +3,14 @@ import { defineProps, ref } from 'vue'
 import type { Product } from '@/domain/models/Product'
 import MaterialSymbolsFavoriteOutline from '@/components/icons/MaterialSymbolsFavoriteOutline.vue'
 import { useWishlistStore } from '@/stores/useWishlistStore.ts'
+import { useRoute } from 'vue-router'
+import { CloseBold } from '@element-plus/icons-vue'
 
 const props = defineProps({
   product: [Object as () => Product, { required: true }],
 })
 const store = useWishlistStore()
+const route = useRoute()
 
 const localProduct = ref({ ...props.product })
 </script>
@@ -19,8 +22,18 @@ const localProduct = ref({ ...props.product })
         :type="store.getItems.some((item) => item.code === product.code) ? 'danger' : 'info'"
         circle
         @click="store.toggleItem(product)"
+        v-if="route.path === '/'"
       >
         <MaterialSymbolsFavoriteOutline width="30" height="30" fill="#FFFFFF" />
+      </el-button>
+      <el-button
+        circle
+        :icon="CloseBold"
+        type="button.type"
+        link
+        v-else
+        @click.prevent="store.removeItem(localProduct.code)"
+      >
       </el-button>
     </div>
     <el-image :src="localProduct.image" lazy fit="contain" />
