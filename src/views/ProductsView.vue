@@ -58,6 +58,6 @@ watch(queryError, (newError) => {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-evenly;
-  gap: 6px;
+  padding: 0 20px;
 }
 </style>

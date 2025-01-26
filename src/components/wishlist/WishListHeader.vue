@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import MaterialSymbolsFavoriteOutline from '@/components/icons/MaterialSymbolsFavoriteOutline.vue'
 import MaterialSymbolsFavoriteOutlineBold from '@/components/icons/MaterialSymbolsFavoriteOutlineBold.vue'
-import { ref } from 'vue'
+import { useWishlistStore } from '@/stores/useWishlistStore.ts'
 
-const isWishlistEmpty = ref<boolean>(true)
+const store = useWishlistStore()
 </script>
 
 <template>
@@ -14,9 +14,9 @@ const isWishlistEmpty = ref<boolean>(true)
           width="32"
           height="32"
           fill="#FFFFFF"
-          v-if="isWishlistEmpty"
+          v-if="store.getItems.length === 0"
         />
-        <MaterialSymbolsFavoriteOutlineBold width="32" height="32" fill="#FFFFFF" v-else />
+        <MaterialSymbolsFavoriteOutlineBold width="32" height="32" fill="#f20305" v-else />
         <i>Wishlist</i>
       </el-row>
     </RouterLink>

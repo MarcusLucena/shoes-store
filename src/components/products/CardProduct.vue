@@ -16,10 +16,10 @@ const localProduct = ref({ ...props.product })
 </script>
 
 <template>
-  <el-card style="max-width: 225px">
+  <el-card style="max-width: 260px" class="card-container">
     <div class="button-add-cart">
       <el-button
-        :type="store.getItems.some((item) => item.code === product.code) ? 'danger' : 'info'"
+        :color="store.getItems.some((item) => item.code === product.code) ? '#f20305' : '#8d8d8d'"
         circle
         @click="store.toggleItem(product)"
         v-if="route.path === '/'"
@@ -29,7 +29,6 @@ const localProduct = ref({ ...props.product })
       <el-button
         circle
         :icon="CloseBold"
-        type="button.type"
         link
         v-else
         @click.prevent="store.removeItem(localProduct.code)"
@@ -47,15 +46,21 @@ const localProduct = ref({ ...props.product })
         >
           <span class="product-description">
             {{
-              localProduct.name.length > 48
-                ? localProduct.name.slice(0, 48) + '...'
+              localProduct.name.length > 50
+                ? localProduct.name.slice(0, 52) + '...'
                 : localProduct.name
             }}
           </span>
         </el-tooltip>
       </div>
       <div>
-        <el-rate v-model="localProduct.rating" disabled show-score text-color="#999999" />
+        <el-rate
+          v-model="localProduct.rating"
+          disabled
+          show-score
+          text-color="#666666"
+          class="custom-rate"
+        />
       </div>
       <div class="product-old-price">
         {{
@@ -76,25 +81,42 @@ const localProduct = ref({ ...props.product })
 </template>
 
 <style scoped lang="scss">
-.button-add-cart {
-  margin-left: 160px;
-  position: absolute;
-  z-index: 1;
-}
-.product-description {
-  font-family: 'source-sans-pro-regular', sans-serif;
-  font-size: 14px;
-  color: #666666;
-}
-.product-old-price {
-  text-decoration: line-through;
-  color: #888888;
-  font-size: 12px;
-  font-family: 'source-sans-pro-regular', sans-serif;
-}
-.product-price {
-  font-size: 16px;
-  font-family: 'source-sans-pro-semibold', sans-serif;
-  color: $default-color;
+.card-container {
+  margin: 15px auto;
+  -webkit-box-shadow: 3px 1px 6px 0 rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 3px 1px 6px 0 rgba(0, 0, 0, 0.75);
+  box-shadow: 3px 1px 6px 0 rgba(0, 0, 0, 0.75);
+
+  .button-add-cart {
+    margin-top: -14px;
+    margin-left: 200px;
+    position: absolute;
+    z-index: 1;
+  }
+  .product-description {
+    font-size: 16px;
+    font-family: 'source-sans-pro-semibold', sans-serif;
+    color: #666666;
+    width: 100%;
+    min-height: 40px;
+    display: flex;
+    margin-top: 10px;
+  }
+  .product-old-price {
+    font-size: 14px;
+    font-family: 'source-sans-pro-semibold', sans-serif;
+    text-decoration: line-through;
+    color: #666666;
+    margin-top: 10px;
+  }
+  .product-price {
+    font-size: 22px;
+    font-family: 'source-sans-pro-bold', sans-serif;
+    color: $default-color;
+  }
+
+  .custom-rate {
+    font-weight: bold;
+  }
 }
 </style>
