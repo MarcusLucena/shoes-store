@@ -27,6 +27,7 @@ const localProduct = ref({ ...props.product })
         <MaterialSymbolsFavoriteOutline width="30" height="30" fill="#FFFFFF" />
       </el-button>
       <el-button
+        id="remove-product"
         circle
         :icon="CloseBold"
         link
