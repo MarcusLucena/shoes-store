@@ -2,7 +2,6 @@ import { mount } from '@vue/test-utils'
 import ProductsView from '@/views/ProductsView.vue'
 import { useLazyQuery } from '@vue/apollo-composable'
 import { describe, it, beforeEach, vi, expect } from 'vitest'
-import CardProduct from '@/components/products/CardProduct.vue'
 
 vi.mock('@vue/apollo-composable', () => ({
   useLazyQuery: vi.fn(),
