@@ -43,8 +43,13 @@ watch(queryError, (newError) => {
 <template>
   <div>
     <BreadcrumbPages :step="1" />
-    <div v-if="loading.value">Loading...</div>
-    <div v-if="error.value">Error: {{ error.value }}</div>
+    <div v-if="loading.value">
+      <el-table v-loading="loading" style="width: 100%">
+      </el-table>
+    </div>
+    <div v-if="error.value && !loading.value">
+        <el-empty description="Sem produtos para exibir no momento" />
+    </div>
     <div v-if="products.length" class="cards-container">
       <div v-for="product in products" :key="product.code">
         <CardProduct :product="product" />

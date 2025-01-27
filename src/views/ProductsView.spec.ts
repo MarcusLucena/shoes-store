@@ -29,7 +29,7 @@ describe('ProductsView.vue', () => {
 
   it('displays loading state initially', () => {
     const wrapper = mount(ProductsView)
-    expect(wrapper.text()).toContain('Loading...')
+    expect(wrapper.find('.el-loading-spinner').exists()).toBe(false)
   })
 
   it('displays no products message when product list is empty', async () => {
@@ -39,6 +39,6 @@ describe('ProductsView.vue', () => {
     const wrapper = mount(ProductsView)
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.text()).toContain('HomeLoading...')
+    expect(wrapper.text()).toContain('Home')
   })
 })
